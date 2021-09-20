@@ -1,0 +1,7 @@
+# created by virtualenv automatically
+.vscode/
+venv/*
+__pycache__/
+assets
+db.sqlite3
+migrations
