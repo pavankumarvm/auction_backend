@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
 from auction_system import settings
+from products.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',  index, name="index"),
     path('accounts/', include('accounts.urls')),
     path('api/products/', include('products.urls')),
     path('api/bids/', include('bids.urls')),

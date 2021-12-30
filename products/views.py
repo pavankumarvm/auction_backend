@@ -7,6 +7,10 @@ from .serializer import CategorySerializer, ProductSerializer
 # Create your views here.
 
 
+def index(request):
+    return render(request, 'index.html')
+
+
 class CategoryList(generics.ListAPIView):
     def get_queryset(self):
         queryset = Category.objects.all()
