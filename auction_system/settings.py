@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-iq9z8@#&ixd2%cj)97o4pf*joq=l7efx-z9163xr-yng!)&46@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['virtualauction-api.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ["*", 'virtualauction-api.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -171,6 +172,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets/')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/')
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
