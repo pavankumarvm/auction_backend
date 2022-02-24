@@ -34,6 +34,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(verbose_name="last login", auto_now=True)
     is_admin = models.BooleanField(default=False)
+    is_seller = models.BooleanField(default=False)
+    is_buyer = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -65,6 +67,23 @@ def delete_file(sender, instance, *args, **kwargs):
     """ Deletes image files on `post_delete` """
     if instance.photo:
         _delete_file(instance.photo.path)
+
+
+class Address(models.Model):
+    address_id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False)
+    user_id = models.ForeignKey(to=User,on_delete=models.CASCADE,null=False)
+    address_line1 = models.CharField(max_length=50,null=False,blank=False)
+    address_line2 = models.CharField(max_length=50,null=True,blank=True)
+    address_line3 = models.CharField(max_length=50,null=True,blank=True)
+    city = models.CharField(max_length=20, null=False,blank=False)
+    state = models.CharField(max_length=25, null=True,blank=True)
+    pincode = models.CharField(max_length=6, blank=False,null=False)
+    latitude = models.DecimalField(max_digits=9,decimal_places=6)
+    longitude = models.DecimalField(max_digits=9,decimal_places=6)
+
+    def __str__(self) -> str:
+        return self.user_id
 
 
 class Otp(models.Model):
