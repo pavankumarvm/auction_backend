@@ -28,7 +28,10 @@ SECRET_KEY = 'django-insecure-iq9z8@#&ixd2%cj)97o4pf*joq=l7efx-z9163xr-yng!)&46@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'http://virtualauction.herokuapp.com',
+    'http://virtualauction-apis.herokuapp.com',
+    '127.0.0.1', ]
 
 
 # Application definition
@@ -54,8 +57,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -66,6 +70,8 @@ MIDDLEWARE = [
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'http://localhost:8000',
+    'http://virtualauction.herokuapp.com',
+    'http://virtualauction-apis.herokuapp.com'
 )
 
 ROOT_URLCONF = 'auction_system.urls'
