@@ -19,6 +19,7 @@ from django.urls import path, include
 from auction_system import settings
 
 urlpatterns = [
+    path('', include('adminpanel.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('api/products/', include('products.urls')),
